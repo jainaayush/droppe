@@ -8,6 +8,7 @@ import { Form } from "./components/form";
 import logo from "./images/droppe-logo.png";
 import img1 from "./images/img1.png";
 import img2 from "./images/img2.png";
+import axios from "axios";
 import styles from "./shopApp.module.css";
 
 export class ShopApp extends React.Component<
@@ -22,28 +23,43 @@ export class ShopApp extends React.Component<
 
     this.state = { products: [], isOpen: false, isShowingMessage: false, message: '', numFavorites: 0, prodCount: 0 };
 
-    fetch('https://fakestoreapi.com/products').then((response) => {
-      let jsonResponse = response.json();
+    // fetch('https://fakestoreapi.com/products').then((response) => {
+    //   let jsonResponse = response.json();
 
-      jsonResponse.then((rawData) => {
-        let data = [];
+    //   jsonResponse.then((rawData) => {
+    //     let data = [];
 
-        for (let i = 0; i < rawData.length; i++) {
-          let updatedProd = rawData[i];
-          data.push(updatedProd);
-        }
-        this.setState({
-          products: data,
-        });
-        this.setState({
-          prodCount: data.length
-        })
-      });
-    });
+    //     for (let i = 0; i < rawData.length; i++) {
+    //       let updatedProd = rawData[i];
+    //       data.push(updatedProd);
+    //     }
+    //     this.setState({
+    //       products: data,
+    //     });
+    //     this.setState({
+    //       prodCount: data.length
+    //     })
+    //   });
+    // });
   }
+  getData = ()=>{
+    axios({
+      method: 'get',
+      url: 'https://fakestoreapi.com/products',
+      headers : { 'Access-Control-Allow-Origin' : "*"}
+    }).then((response)=>{
+      console.log("response data check here",response)
+      this.setState({
+              products: response?.data,
+              prodCount: response?.data?.length
+            });
+    }).catch(()=>{
 
+    })
+  }
    componentDidMount(){
       document.title = "Droppe refactor app"
+      this.getData()
    }
 
   favClick(title: string) {
