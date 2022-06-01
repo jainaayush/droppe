@@ -42,8 +42,8 @@ export class ShopApp extends React.Component<
     //   });
     // });
   }
-  getData = () => {
-    axios({
+  getData = async () => {
+    await axios({
       method: 'get',
       url: 'https://fakestoreapi.com/products',
       headers: { 'Access-Control-Allow-Origin': "*" }
@@ -78,15 +78,15 @@ export class ShopApp extends React.Component<
 
     this.setState(() => ({ products: prods, numFavorites: totalFavs }));
   }
-
-  onSubmit(payload: { title: string; description: string, price: string, rate: Number }) {
+  addData = (data : any,rate : Number)=>{
     const updated = lodash.clone(this.state.products);
     updated.push({
-      title: payload.title,
-      description: payload.description,
-      price: payload.price,
+      id : data.id,
+      title: data.title,
+      description: data.description,
+      price: data.price,
       rating: {
-        rate: payload.rate
+        rate: rate
       }
     });
 
@@ -95,14 +95,18 @@ export class ShopApp extends React.Component<
       prodCount: lodash.size(this.state.products) + 1
     });
 
+  }
+  async onSubmit(payload: { title: string; description: string, price: string, rate: Number }) {
+    
     this.setState({
       isOpen: false,
-    });
-
-    this.setState({
       isShowingMessage: true,
       message: 'Adding product...'
-    })
+    });
+
+    // this.setState({
+      
+    // })
 
     // **this POST request doesn't actually post anything to any database**
     // fetch('https://fakestoreapi.com/products', {
@@ -126,7 +130,7 @@ export class ShopApp extends React.Component<
     //       }, 2000)
     //     })(this);
     //   })
-    axios({
+    await axios({
       method: 'post',
       url: 'https://fakestoreapi.com/products',
       data: {
@@ -135,14 +139,15 @@ export class ShopApp extends React.Component<
         description: payload.description,
         image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
         rating: {
-          rate: 4.5,
-          count: 200
+          rate:payload.rate ,
         }
       }
     }).then((response) => {
       console.log("resssss", response)
       if (response.status === 200) {
-        this.getData()
+        let data = response.data
+        let rate = payload.rate
+        this.addData(data,rate)
 
       }
     }).catch(() => {

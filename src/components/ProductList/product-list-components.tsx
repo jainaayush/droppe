@@ -9,7 +9,7 @@ interface IPostsProps {
 }
 
 
-export default class Posts extends React.Component<IPostsProps, {}> {
+class Posts extends React.Component<IPostsProps, {}> {
   constructor(props: any) { super(props) }
   render(){
     let productsarr = []
@@ -53,9 +53,10 @@ export const Product: React.FC<{
               onFav(product.title);
           }}
         >
-          <FaStar /> <span className={actionBarItemLabel}>{!!(!!(product.isFavorite)) ? 'Remove from favorites' : 'Add to favorites'}</span>
+          <FaStar /> <span className={actionBarItemLabel}>{product.isFavorite === true ? 'Remove from favorites' : 'Add to favorites'}</span>
         </span>
       </span>
     </span>
   );
 };
+export default Posts;
