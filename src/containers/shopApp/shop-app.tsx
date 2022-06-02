@@ -26,6 +26,7 @@ export class ShopApp extends React.Component<
 
     this.state = { products: [], isOpen: false, isShowingMessage: false, message: '', numFavorites: 0, prodCount: 0 };
   }
+  // call get product api here 
   getData = async () => {
     await axios({
       method: 'get',
@@ -42,9 +43,10 @@ export class ShopApp extends React.Component<
   }
   componentDidMount() {
     document.title = "Droppe refactor app"
+    // call get product api when component mount
     this.getData()
   }
-
+  // write add favorite logic using "id" because title are same more than one product 
   favClick(id: Number) {
     const prods = this.state.products;
     const idx = lodash.findIndex(prods, { id: id })
@@ -61,7 +63,7 @@ export class ShopApp extends React.Component<
 
     this.setState(() => ({ products: prods, numFavorites: totalFavs }));
   }
-
+  // update data in state logic write here
   addData = (data?: ApiData, rate?: string) => {
     const updated = lodash.clone(this.state.products);
     let id = this.state?.products?.length + 1
@@ -83,6 +85,7 @@ export class ShopApp extends React.Component<
     });
 
   }
+  // call post api using axios and logic
   async onSubmit(payload: { title: string; description: string, price: string, rate: string }) {
 
     this.setState({

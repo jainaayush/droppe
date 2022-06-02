@@ -26,6 +26,7 @@ export const Product: React.FC<{
 }> = ({ product, onFav }) => {
   const { product: productClass, productBody, actionBarItem, actionBarItemLabel } = styles
   // Problem: Now product title can be too long, I just put overflowX as fix now
+  // fix overflow product title issue when it too long
   return (
     <span className={productClass} style={{ display: 'inline-block', float: 'none', clear: 'both' }}>
       <p><span className={styles['product-title']}>{product.title}</span></p>
@@ -46,6 +47,7 @@ export const Product: React.FC<{
             }`}
           role="button"
           onClick={() => {
+            // pass product id for remove and add product in favorite
             onFav(product.id);
           }}
         >

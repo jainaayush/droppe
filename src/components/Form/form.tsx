@@ -4,6 +4,7 @@ import styles from "./form.module.css";
 import { IFormProps , IProduct} from "../../types/customs"
 
 const Form: React.FC<IFormProps> = (props) => {
+  // update data in state because using Ref component will be uncontrol
   const [data, setData] = React.useState<IProduct>({
     title: "",
     price: "",
@@ -12,11 +13,12 @@ const Form: React.FC<IFormProps> = (props) => {
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
-
+    // check rating give between 0 to 5
     if (e.target.name === "rating" && (parseFloat(e.target.value) > 5 || parseFloat(e.target.value) < 0)) {
       alert("Please give rating between 0 to 5")
       return;
     }
+    // form data update here
     setData({ ...data, [e.target.name]: e.target.value })
   }
   const handleSubmit = (e: React.FormEvent) => {

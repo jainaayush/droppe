@@ -90,6 +90,7 @@
   max-height: 15em;
   display: block;
 }
+/* for mobile view css start here */
 @media (max-width: 480px) {
   .reactModalContent {
     min-height: 90vh;
