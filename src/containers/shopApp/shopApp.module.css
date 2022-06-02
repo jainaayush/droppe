@@ -34,11 +34,10 @@
 .reactModalContent {
   font-family: "Open Sans";
   position: absolute;
-  top: 120px;
+  top: 30px;
   left: 0;
   right: 0;
-  bottom: 120px;
-  width: 750px;
+  max-width: 750px;
   height: auto;
   margin: 0 auto;
   background: #ffffff;
@@ -47,6 +46,8 @@
   outline: none;
   padding: 24px;
   overflow: auto;
+  max-height: 80vh;
+  min-height: 80vh;
 }
 
 .reactModalOverlay {
@@ -63,7 +64,7 @@
 .modalContentHelper {
   position: relative;
   height: 100%;
-  padding: 64px 0;
+  padding: 30px 0;
 }
 
 .modalClose {
@@ -79,4 +80,29 @@
 .loader {
   justify-content: center;
   align-items: center;
+  text-align: center;
+}
+.bannerbox{
+  display: flex;
+  justify-content: space-evenly;
+}
+.bannerimg{
+  max-height: 15em;
+  display: block;
+}
+@media (max-width: 480px) {
+  .reactModalContent {
+    min-height: 90vh;
+  }
+  .bannerbox{
+    flex-wrap: wrap;
+  }
+  .bannerimg{
+    width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+  }
+  .main {
+    padding: 0 5px;
+  }
 }

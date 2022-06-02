@@ -57,7 +57,6 @@ const Form: React.FC<IFormProps> = (props) => {
 
     // formRef.current?.reset();
   };
-  console.log(data)
   return (
     <form className={styles.form} onSubmit={(event) => handleSubmit(event)}
     // ref={formRef}

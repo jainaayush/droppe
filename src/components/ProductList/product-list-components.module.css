@@ -20,11 +20,11 @@
   font-size: 24px;
   font-weight: 600;
   margin: 0 0 16px;
-  white-space: nowrap;
 }
 
 .productBody {
   margin: 0 0 16px;
+  word-break: break-all;
 }
 
 .action_bar {

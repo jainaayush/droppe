@@ -54,7 +54,6 @@ export class ShopApp extends React.Component<
       url: 'https://fakestoreapi.com/products',
       headers: { 'Access-Control-Allow-Origin': "*" }
     }).then((response) => {
-      console.log("response data check here", response)
       this.setState({
         products: response?.data,
         prodCount: response?.data?.length
@@ -70,7 +69,6 @@ export class ShopApp extends React.Component<
 
   favClick(id: Number) {
     const prods = this.state.products;
-    console.log("proda", prods)
     const idx = lodash.findIndex(prods, { id: id })
     let currentFavs = this.state.numFavorites
     let totalFavs: any;
@@ -153,7 +151,6 @@ export class ShopApp extends React.Component<
         }
       }
     }).then((response) => {
-      console.log("resssss", response)
       if (response.status === 200) {
         let data = response?.data
         let rate = payload?.rate
@@ -168,48 +165,49 @@ export class ShopApp extends React.Component<
     const { products, isOpen } = this.state;
     return (
       <React.Fragment>
-        <div className={styles.header}>
-          <div className={['container', styles.headerImageWrapper].join(' ')}>
-            <img src={logo} className={styles.headerImage} />
+        <div className={styles.main}>
+          <div className={styles.header}>
+            <div className={['container', styles.headerImageWrapper].join(' ')}>
+              <img src={logo} className={styles.headerImage} />
+            </div>
           </div>
-        </div>
 
-        <>
-          <span
-            className={['container', styles.main].join(' ')}
-            style={{ margin: '50px inherit', display: 'flex', justifyContent: 'space-evenly' }}
-          >
-            <img src={img1} style={{ maxHeight: "15em", display: 'block' }} />
-            <img src={img2} style={{ maxHeight: "15rem", display: 'block' }} />
-          </span>
-        </>
-
-        <div className={['container', styles.main].join(' ')} style={{ paddingTop: 0 }}>
-          <div className={styles.buttonWrapper}>
-            <span role="button">
-              <Button
-                onClick={function (this: any) {
-                  this.setState({
-                    isOpen: true,
-                  });
-                }.bind(this)}
-              >Send product proposal</Button>
+          <>
+            <span
+              className={['container', styles.main,styles.bannerbox].join(' ')}            
+            >
+              <img src={img1} className={styles.bannerimg}/>
+              <img src={img2} className={styles.bannerimg}/>
             </span>
-            {this.state.isShowingMessage && <div className={styles.messageContainer}>
-              <div style={{display : 'flex'}}>
-              <i>{this.state.message}</i>
-              <Dots color="blue"/>
-              </div>
-            </div>}
-          </div>
+          </>
 
-          <div className={styles.statsContainer}>
-            <span>Total products: {this.state.prodCount}</span>
-            {' - '}
-            <span>Number of favorites: {this.state.numFavorites}</span>
-          </div>
+          <div className={['container', styles.main].join(' ')} style={{ paddingTop: 0 }}>
+            <div className={styles.buttonWrapper}>
+              <span role="button">
+                <Button
+                  onClick={function (this: any) {
+                    this.setState({
+                      isOpen: true,
+                    });
+                  }.bind(this)}
+                >Send product proposal</Button>
+              </span>
+              {this.state.isShowingMessage && <div className={styles.messageContainer}>
+                <div style={{display : 'flex'}}>
+                <i>{this.state.message}</i>
+                <Dots color="blue"/>
+                </div>
+              </div>}
+            </div>
 
-          {products && !!products?.length ? <ProductList products={products} onFav={this.favClick} /> : <div className={styles.loader}><Dots color="blue"/></div>}
+            <div className={styles.statsContainer}>
+              <span>Total products: {this.state.prodCount}</span>
+              {' - '}
+              <span>Number of favorites: {this.state.numFavorites}</span>
+            </div>
+
+            {products && !!products?.length ? <ProductList products={products} onFav={this.favClick} /> : <div className={styles.loader}><Dots color="blue"/></div>}
+          </div>
         </div>
 
         <>
