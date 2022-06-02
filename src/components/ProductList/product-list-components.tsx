@@ -5,7 +5,7 @@ import styles from "./product-list-components.module.css";
 
 interface IPostsProps {
   products: any;
-  onFav: (title: string) => void;
+  onFav: (id: Number) => void;
 }
 
 
@@ -24,8 +24,8 @@ class Posts extends React.Component<IPostsProps, {}> {
 
 export const Product: React.FC<{
   index: number;
-  product: { title: string; description: string; price: number; isFavorite: boolean; rating: {rate: number; count: number} };
-  onFav: (title: string) => void;
+  product: { id : Number ,title: string; description: string; price: number; isFavorite: boolean; rating: {rate: number; count: number} };
+  onFav: (id: Number) => void;
 }> = ({ product, onFav }) => {
   const {product: productClass, productBody, actionBarItem, actionBarItemLabel} = styles
   // Problem: Now product title can be too long, I just put overflowX as fix now
@@ -50,7 +50,7 @@ export const Product: React.FC<{
           }`}
           role="button"
           onClick={() => {
-              onFav(product.title);
+              onFav(product.id);
           }}
         >
           <FaStar /> <span className={actionBarItemLabel}>{product.isFavorite === true ? 'Remove from favorites' : 'Add to favorites'}</span>

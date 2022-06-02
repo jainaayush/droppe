@@ -3,24 +3,30 @@ import { Button } from "../Button/button";
 import styles from "./form.module.css";
 
 type IFormProps = {
-  "on-submit": (payload: { title: string; description: string; price: string, rate : Number }) => void;
+  "on-submit": (payload: { title: string; description: string; price: string, rate: string }) => void;
 }
+interface IProduct {
+  title: string;
+  price: string;
+  description: string;
+  rating: string;
 
+}
 const Form: React.FC<IFormProps> = (props) => {
   // let formRef = React.useRef<HTMLFormElement>(null);
   // let titleRef = React.useRef<HTMLInputElement>(null);
   // let priceRef = React.useRef<HTMLInputElement>(null);
   // let descriptionRef = React.useRef<HTMLTextAreaElement>(null);
-  const [data, setData] = React.useState({
+  const [data, setData] = React.useState<IProduct>({
     title: "",
     price: "",
     description: "",
-    rating : 0
+    rating: "",
   })
 
   const handleChange = (e: any) => {
 
-    if(e.target.name === "rating" && (parseFloat(e.target.value) > 5  || parseFloat(e.target.value) < 0)){
+    if (e.target.name === "rating" && (parseFloat(e.target.value) > 5 || parseFloat(e.target.value) < 0)) {
       alert("Please give rating between 0 to 5")
       return;
     }
@@ -35,7 +41,7 @@ const Form: React.FC<IFormProps> = (props) => {
       return;
     }
 
-    if (data?.description === "" || data?.price === "" || data?.rating === 0) {
+    if (data?.description === "" || data?.price === "" || data?.rating === "") {
       alert("Your product needs some content");
 
       return;
@@ -45,7 +51,7 @@ const Form: React.FC<IFormProps> = (props) => {
       title: data?.title,
       description: data?.description,
       price: data?.price,
-      rate : data?.rating
+      rate: data?.rating
 
     });
 
@@ -84,7 +90,7 @@ const Form: React.FC<IFormProps> = (props) => {
         // ref={priceRef}
         value={data.rating}
         name="rating"
-        placeholder="Rating"
+        placeholder="Rating..."
         // defaultValue=""
         type="number"
         onChange={(e) => handleChange(e)}

@@ -4,20 +4,24 @@ import Modal from "react-modal";
 import { FaTimes } from "react-icons/fa";
 import { Button } from "../../components/Button/button";
 import ProductList from "../../components/ProductList/product-list-components";
-import  Form  from "../../components/Form/form";
+import Form from "../../components/Form/form";
 import logo from "../../images/droppe-logo.png";
 import img1 from "../../images/img1.png";
 import img2 from "../../images/img2.png";
 import axios from "axios";
 import styles from "./shopApp.module.css";
-
+type ApiData = {
+  id : Number
+  title: string;
+  price: string;
+  description: string;
+}
 export class ShopApp extends React.Component<
   {},
   { products: any[]; isOpen: boolean; isShowingMessage: boolean; message: string; numFavorites: number; prodCount: number }
 > {
-  constructor(props: any) {
+  constructor(props : any) {
     super(props);
-
     this.favClick = this.favClick.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
@@ -62,9 +66,10 @@ export class ShopApp extends React.Component<
     this.getData()
   }
 
-  favClick(title: string) {
+  favClick(id: Number) {
     const prods = this.state.products;
-    const idx = lodash.findIndex(prods, { title: title })
+    console.log("proda", prods)
+    const idx = lodash.findIndex(prods, { id: id })
     let currentFavs = this.state.numFavorites
     let totalFavs: any;
 
@@ -78,13 +83,15 @@ export class ShopApp extends React.Component<
 
     this.setState(() => ({ products: prods, numFavorites: totalFavs }));
   }
-  addData = (data : any,rate : Number)=>{
+
+  addData = (data?: ApiData, rate?: string) => {
     const updated = lodash.clone(this.state.products);
+    let id = this.state?.products?.length + 1
     updated.push({
-      id : data.id,
-      title: data.title,
-      description: data.description,
-      price: data.price,
+      id: id,
+      title: data?.title,
+      description: data?.description,
+      price: data?.price,
       rating: {
         rate: rate
       }
@@ -92,12 +99,14 @@ export class ShopApp extends React.Component<
 
     this.setState({
       products: updated,
-      prodCount: lodash.size(this.state.products) + 1
+      prodCount: lodash.size(this.state.products) + 1,
+      isShowingMessage: false,
+      message: ''
     });
 
   }
-  async onSubmit(payload: { title: string; description: string, price: string, rate: Number }) {
-    
+  async onSubmit(payload: { title: string; description: string, price: string, rate: string }) {
+
     this.setState({
       isOpen: false,
       isShowingMessage: true,
@@ -105,7 +114,7 @@ export class ShopApp extends React.Component<
     });
 
     // this.setState({
-      
+
     // })
 
     // **this POST request doesn't actually post anything to any database**
@@ -137,17 +146,16 @@ export class ShopApp extends React.Component<
         title: payload.title,
         price: payload.price,
         description: payload.description,
-        image: "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg",
         rating: {
-          rate:payload.rate ,
+          rate: payload.rate,
         }
       }
     }).then((response) => {
       console.log("resssss", response)
       if (response.status === 200) {
-        let data = response.data
-        let rate = payload.rate
-        this.addData(data,rate)
+        let data = response?.data
+        let rate = payload?.rate
+        this.addData(data, rate)
 
       }
     }).catch(() => {
