@@ -20,7 +20,7 @@ const Form: React.FC<IFormProps> = (props) => {
     rating: "",
   })
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>) => {
 
     if (e.target.name === "rating" && (parseFloat(e.target.value) > 5 || parseFloat(e.target.value) < 0)) {
       alert("Please give rating between 0 to 5")
@@ -28,7 +28,7 @@ const Form: React.FC<IFormProps> = (props) => {
     }
     setData({ ...data, [e.target.name]: e.target.value })
   }
-  const handleSubmit = (e: any) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (data.title === "") {
