@@ -52,7 +52,7 @@ const Form: React.FC<IFormProps> = (props) => {
     });
   };
   return (
-    <form className={styles.form} onSubmit={(event) => handleSubmit(event)}
+    <form data-test="productAdd-form" className={styles.form} onSubmit={(event) => handleSubmit(event)}
     >
       <span className={styles.label}>Product title: *</span>
 
@@ -61,6 +61,7 @@ const Form: React.FC<IFormProps> = (props) => {
         placeholder="Title..."
         name="title"
         className={styles.input}
+        data-test="title"
         onChange={(e) => handleChange(e)}
       />
 
@@ -70,6 +71,7 @@ const Form: React.FC<IFormProps> = (props) => {
         value={data.price}
         name="price"
         placeholder="Price..."
+        data-test="price"
         onChange={(e) => handleChange(e)}
         className={styles.input}
       />
@@ -78,6 +80,7 @@ const Form: React.FC<IFormProps> = (props) => {
         value={data.rating}
         name="rating"
         placeholder="Rating..."
+        data-test="rating"
         type="number"
         onChange={(e) => handleChange(e)}
         className={styles.input}
@@ -86,12 +89,13 @@ const Form: React.FC<IFormProps> = (props) => {
       <textarea
         value={data.description}
         placeholder="Start typing product description here..."
+        data-test="description"
         name="description"
         onChange={(e) => handleChange(e)}
         className={styles.textarea}
       />
 
-      <Button>Add a product</Button>
+      <Button data-test="add-Product">Add a product</Button>
     </form>
   );
 };

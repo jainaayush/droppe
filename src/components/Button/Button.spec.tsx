@@ -1,16 +1,18 @@
 import React from "react";
-import { render,screen, fireEvent } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render, screen  } from "@testing-library/react";
+import {} from "@testing-library/react";
+// import userEvent from "@testing-library/user-event";
+// import userEvent from "@testing-library/user-event";
 import { Button } from "./button"
 
 describe("when rendered with `onClick` prop", () => {
     it("should render the button", () => {
       render(
         <Button 
+        children={""}
           onClick={() => {}} />
          );
-      expect(
-        screen.getByRole("button")
+      expect(screen.getByRole("button")
       ).toBeInTheDocument();
     });
   });
