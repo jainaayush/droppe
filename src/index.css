@@ -27,3 +27,8 @@ code {
   max-width: 750px;
   margin: auto;
 }
+
+.spinnerloader {
+  justify-content: center;
+  align-items: center;
+}

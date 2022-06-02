@@ -2,6 +2,8 @@ import React,{ Suspense } from "react";
 import ReactDOM from "react-dom";
 import Modal from "react-modal"
 import "./index.css";
+import { Spinner } from "react-activity";
+import "react-activity/dist/library.css";
 // import { ShopApp } from "./containers/shopApp/shop-app";
 import * as serviceWorker from "./serviceWorker";
 const ShopApp = React.lazy(()=>import("./containers/shopApp/shop-app").then(({ShopApp}) => ({default: ShopApp})))
@@ -9,7 +11,7 @@ Modal.setAppElement("#root")
 
 ReactDOM.render(
   <React.StrictMode>
-    <Suspense fallback={<div>Loading</div>}>
+    <Suspense fallback={<div><Spinner className="spinnerloader"/></div>}>
     <ShopApp />
     </Suspense>
   </React.StrictMode>,

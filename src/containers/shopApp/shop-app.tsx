@@ -10,6 +10,8 @@ import img1 from "../../images/img1.png";
 import img2 from "../../images/img2.png";
 import axios from "axios";
 import styles from "./shopApp.module.css";
+import { Dots } from "react-activity";
+import "react-activity/dist/library.css";
 type ApiData = {
   id : Number
   title: string;
@@ -110,7 +112,7 @@ export class ShopApp extends React.Component<
     this.setState({
       isOpen: false,
       isShowingMessage: true,
-      message: 'Adding product...'
+      message: 'Adding product'
     });
 
     // this.setState({
@@ -194,7 +196,10 @@ export class ShopApp extends React.Component<
               >Send product proposal</Button>
             </span>
             {this.state.isShowingMessage && <div className={styles.messageContainer}>
+              <div style={{display : 'flex'}}>
               <i>{this.state.message}</i>
+              <Dots color="blue"/>
+              </div>
             </div>}
           </div>
 
@@ -204,7 +209,7 @@ export class ShopApp extends React.Component<
             <span>Number of favorites: {this.state.numFavorites}</span>
           </div>
 
-          {products && !!products.length ? <ProductList products={products} onFav={this.favClick} /> : <div>Loading</div>}
+          {products && !!products?.length ? <ProductList products={products} onFav={this.favClick} /> : <div className={styles.loader}><Dots color="blue"/></div>}
         </div>
 
         <>
