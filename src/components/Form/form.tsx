@@ -13,10 +13,6 @@ interface IProduct {
 
 }
 const Form: React.FC<IFormProps> = (props) => {
-  // let formRef = React.useRef<HTMLFormElement>(null);
-  // let titleRef = React.useRef<HTMLInputElement>(null);
-  // let priceRef = React.useRef<HTMLInputElement>(null);
-  // let descriptionRef = React.useRef<HTMLTextAreaElement>(null);
   const [data, setData] = React.useState<IProduct>({
     title: "",
     price: "",
@@ -54,20 +50,15 @@ const Form: React.FC<IFormProps> = (props) => {
       rate: data?.rating
 
     });
-
-    // formRef.current?.reset();
   };
   return (
     <form className={styles.form} onSubmit={(event) => handleSubmit(event)}
-    // ref={formRef}
     >
       <span className={styles.label}>Product title: *</span>
 
       <input
-        // ref={titleRef}
         value={data.title}
         placeholder="Title..."
-        defaultValue=""
         name="title"
         className={styles.input}
         onChange={(e) => handleChange(e)}
@@ -76,31 +67,25 @@ const Form: React.FC<IFormProps> = (props) => {
       <span className={styles.label}>Product details: *</span>
 
       <input
-        // ref={priceRef}
         value={data.price}
         name="price"
         placeholder="Price..."
-        defaultValue=""
         onChange={(e) => handleChange(e)}
         className={styles.input}
       />
 
       <input
-        // ref={priceRef}
         value={data.rating}
         name="rating"
         placeholder="Rating..."
-        // defaultValue=""
         type="number"
         onChange={(e) => handleChange(e)}
         className={styles.input}
       />
 
       <textarea
-        // ref={descriptionRef}
         value={data.description}
         placeholder="Start typing product description here..."
-        defaultValue=""
         name="description"
         onChange={(e) => handleChange(e)}
         className={styles.textarea}
