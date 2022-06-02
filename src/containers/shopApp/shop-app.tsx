@@ -12,16 +12,13 @@ import axios from "axios";
 import styles from "./shopApp.module.css";
 import { Dots } from "react-activity";
 import "react-activity/dist/library.css";
-type ApiData = {
-  id : Number
-  title: string;
-  price: string;
-  description: string;
-}
+import { ApiData } from "../../types/customs"
+
 export class ShopApp extends React.Component<
   {},
   { products: any[]; isOpen: boolean; isShowingMessage: boolean; message: string; numFavorites: number; prodCount: number }
-> {
+> 
+{
   constructor(props : any) {
     super(props);
     this.favClick = this.favClick.bind(this);

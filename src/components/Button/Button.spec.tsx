@@ -1,8 +1,5 @@
 import React from "react";
 import { render, screen  } from "@testing-library/react";
-import {} from "@testing-library/react";
-// import userEvent from "@testing-library/user-event";
-// import userEvent from "@testing-library/user-event";
 import { Button } from "./button"
 
 describe("when rendered with `onClick` prop", () => {

@@ -1,17 +1,8 @@
 import * as React from "react";
 import { Button } from "../Button/button";
 import styles from "./form.module.css";
+import { IFormProps , IProduct} from "../../types/customs"
 
-type IFormProps = {
-  "on-submit": (payload: { title: string; description: string; price: string, rate: string }) => void;
-}
-interface IProduct {
-  title: string;
-  price: string;
-  description: string;
-  rating: string;
-
-}
 const Form: React.FC<IFormProps> = (props) => {
   const [data, setData] = React.useState<IProduct>({
     title: "",

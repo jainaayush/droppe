@@ -1,10 +1,6 @@
 import * as React from "react";
 import styles from "./button.module.css";
-
-interface props {
-  children: any;
-  onClick?: () => void;
-}
+import { props } from "../../types/customs"
 
 export const Button: React.FC<props> = ({ children, onClick }) => (
   
