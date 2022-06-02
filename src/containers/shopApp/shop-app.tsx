@@ -17,9 +17,10 @@ import { ApiData } from "../../types/customs"
 export class ShopApp extends React.Component<
   {},
   { products: any[]; isOpen: boolean; isShowingMessage: boolean; message: string; numFavorites: number; prodCount: number }
-> 
+>
 {
-  constructor(props : any) {
+  static find: any;
+  constructor(props: any) {
     super(props);
     this.favClick = this.favClick.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
@@ -122,16 +123,16 @@ export class ShopApp extends React.Component<
         <div className={styles.main}>
           <div className={styles.header}>
             <div className={['container', styles.headerImageWrapper].join(' ')}>
-              <img src={logo} className={styles.headerImage} />
+              <img data-testid="droppeLogo" src={logo} className={styles.headerImage} alt="Droppe" />
             </div>
           </div>
 
           <>
             <span
-              className={['container', styles.main,styles.bannerbox].join(' ')}            
+              className={['container', styles.main, styles.bannerbox].join(' ')}
             >
-              <img src={img1} className={styles.bannerimg}/>
-              <img src={img2} className={styles.bannerimg}/>
+              <img data-testid="doctorsImg" src={img1} className={styles.bannerimg} alt="Doctors" />
+              <img data-testid="labImg" src={img2} className={styles.bannerimg} alt="Lab" />
             </span>
           </>
 
@@ -147,9 +148,9 @@ export class ShopApp extends React.Component<
                 >Send product proposal</Button>
               </span>
               {this.state.isShowingMessage && <div className={styles.messageContainer}>
-                <div style={{display : 'flex'}}>
-                <i>{this.state.message}</i>
-                <Dots color="blue"/>
+                <div style={{ display: 'flex' }}>
+                  <i>{this.state.message}</i>
+                  <Dots color="blue" />
                 </div>
               </div>}
             </div>
@@ -160,7 +161,7 @@ export class ShopApp extends React.Component<
               <span>Number of favorites: {this.state.numFavorites}</span>
             </div>
 
-            {products && !!products?.length ? <ProductList products={products} onFav={this.favClick} /> : <div className={styles.loader}><Dots color="blue"/></div>}
+            {products && !!products?.length ? <ProductList products={products} onFav={this.favClick} /> : <div className={styles.loader}><Dots color="blue" /></div>}
           </div>
         </div>
 

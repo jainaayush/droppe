@@ -36,7 +36,7 @@ export const Product: React.FC<{
       <p><b>Price: ${+product.price}</b></p>
 
       <p className={productBody}>
-        <span><b>Description:</b></span>
+        <span><b data-testid="Description">Description:</b></span>
         <br />
         {product.description}
       </p>
