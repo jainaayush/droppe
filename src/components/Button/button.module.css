@@ -9,6 +9,10 @@
   border-radius: 10px;
   width: 100%;
   padding: 12px;
+  text-align: center !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .button:focus {
@@ -16,9 +20,9 @@
   margin: inherit;
   border: inherit;
   display: inherit;
-  -webkit-align-content: inherit;
+  /* -webkit-align-content: inherit;
   -webkit-animation-delay: inherit;
   -webkit-animation-fill-mode: inherit;
   -webkit-animation-timing-function: inherit;
-  -webkit-box-decoration-break: inherit;
+  -webkit-box-decoration-break: inherit; */
 }
