@@ -5,7 +5,7 @@ import "./index.css";
 import { Spinner } from "react-activity";
 import "react-activity/dist/library.css";
 import * as serviceWorker from "./serviceWorker";
-const ShopApp = React.lazy(()=>import("./containers/shopApp/shop-app").then(({ShopApp}) => ({default: ShopApp})))
+const ShopApp = React.lazy(()=>import("./containers/shopApp/ShopApp").then(({ShopApp}) => ({default: ShopApp})))
 Modal.setAppElement("#root")
 
 ReactDOM.render(

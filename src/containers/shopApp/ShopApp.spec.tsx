@@ -1,6 +1,7 @@
-import { ShopApp } from "./shop-app";
+import { ShopApp } from "./ShopApp";
 import React from "react";
 import '@testing-library/jest-dom';
+//ts-ignore
 import { render, screen } from "@testing-library/react";
 import * as ReactDOM from "react-dom";
 import Droppe from "../../images/droppe-logo.png"
@@ -35,5 +36,7 @@ describe("Initial render with fields", () => {
         expect(screen.getByText('Number of favorites: 0')).toBeVisible()
         expect(screen.getByTestId("button").textContent).toBe('Send product proposal')
     })
+
+    
 
 })

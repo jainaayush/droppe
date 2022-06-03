@@ -1,4 +1,5 @@
-import { Product } from "./product-list-components";
+import '@testing-library/jest-dom'
+import { Product } from "./productList";
 import React from "react";
 import { render, screen  } from "@testing-library/react";
 import * as ReactDOM from "react-dom";

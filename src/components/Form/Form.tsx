@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button } from "../Button/button";
+import { Button } from "../Button/Button";
 import styles from "./form.module.css";
 import { IFormProps , IProduct} from "../../types/customs"
 
@@ -45,7 +45,7 @@ const Form: React.FC<IFormProps> = (props) => {
     });
   };
   return (
-    <form data-test="productAdd-form" className={styles.form} onSubmit={(event) => handleSubmit(event)}
+    <form data-testid="productAdd-form" className={styles.form} onSubmit={(event) => handleSubmit(event)}
     >
       <span className={styles.label}>Product title: *</span>
 
@@ -54,7 +54,7 @@ const Form: React.FC<IFormProps> = (props) => {
         placeholder="Title..."
         name="title"
         className={styles.input}
-        data-test="title"
+        data-testid="title"
         onChange={(e) => handleChange(e)}
       />
 
@@ -64,16 +64,17 @@ const Form: React.FC<IFormProps> = (props) => {
         value={data.price}
         name="price"
         placeholder="Price..."
-        data-test="price"
+        data-testid="price"
         onChange={(e) => handleChange(e)}
         className={styles.input}
+        type="number"
       />
 
       <input
         value={data.rating}
         name="rating"
         placeholder="Rating..."
-        data-test="rating"
+        data-testid="rating"
         type="number"
         onChange={(e) => handleChange(e)}
         className={styles.input}
@@ -82,13 +83,13 @@ const Form: React.FC<IFormProps> = (props) => {
       <textarea
         value={data.description}
         placeholder="Start typing product description here..."
-        data-test="description"
+        data-testid="description"
         name="description"
         onChange={(e) => handleChange(e)}
         className={styles.textarea}
       />
 
-      <Button data-test="add-Product">Add a product</Button>
+      <Button data-testid="add-Product">Add a product</Button>
     </form>
   );
 };

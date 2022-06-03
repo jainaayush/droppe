@@ -19,6 +19,12 @@
 13. Added Unit test cases in each component folder in jest.
 14. Refactored code quality and validations
 
+## Test Case Coverages
+1. In Button component i cover statements, branch, functions, lines.
+2. In Form component  i mostly focus on statements, functions, lines , branch
+3. In Product component i mostly focus on branch, statements, lines, function
+4. In ShopApp component i mostly focus on  branch, lines, statements ,functions
+
 In the project directory, you can run:
 
 ### `yarn start`
